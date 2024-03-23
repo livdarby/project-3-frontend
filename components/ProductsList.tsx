@@ -20,6 +20,26 @@ function ProductsList() {
 
   return (
     <section className="section">
+      {/* Search Bar */}
+      <div className="level-item ">
+        <input
+          className="input is-light is-rounded is-focused mr-2"
+          placeholder="Search Product ⌚️"
+          type="text"
+          // value={searchPlant}
+          // onChange={handleChange}
+          id="eshopSearch"
+          name="eshopSearch"
+        />
+        {/* Search Button*/}
+        <button
+          className="button is-light is-rounded"
+          // onClick={handleSearchClick}
+        >
+          🔍
+        </button>
+      </div>
+      {/* Full Product List */}
       <div className="container">
         <div className="columns is-multiline">
           {products?.map((product) => {
