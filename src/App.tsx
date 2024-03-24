@@ -7,6 +7,7 @@ import Login from "../components/Login"
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CreateProduct from "../components/CreateProduct"
+import ShowProduct from "../components/ShowProduct"
 
 function App() {
 
@@ -28,17 +29,17 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
+      <Navbar user={user} setUser={setUser}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductList />} />
         <Route path="/signup" element={<UserSignup />} />
         <Route path="/login" element={<Login fetchUser={fetchUser}  />} />
         <Route path="/create" element={<CreateProduct />} />
-        {/* <Route path="/product/:productId" element={<ShowProduct />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/product/:productId" element={<ShowProduct user={user} />} />
+        {/* <Route path="/checkout" element={<Checkout />} />
         <Route path="/sellerhome" element={<SellerHome />} />
-        <Route path="/editproduct/:productId" element={<EditProduct />} />  */}
+        <Route path="/editproduct/:productId" element={<EditProduct />} />  */} 
       </Routes>
     </Router>
   );
