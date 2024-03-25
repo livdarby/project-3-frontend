@@ -4,9 +4,14 @@ import { IProduct } from "../interfaces/productInterface";
 import Product from "./ProductCard";
 import { IUser } from "../interfaces/userInterface";
 import axios from "axios";
+import Checkout from "./Checkout";
+import { Link } from "react-router-dom";
 
 function ShowProduct({ user }: { user: null | IUser }) {
   const [product, setProducts] = React.useState<IProduct | null>(null);
+  const [purchasedProduct, setPurchasedProduct] = React.useState<string | null>(
+    null
+  );
   const { productId } = useParams();
   const navigate = useNavigate();
 
@@ -35,6 +40,16 @@ function ShowProduct({ user }: { user: null | IUser }) {
     }
   }
 
+  function editProduct() {
+    <Link to="/edit"></Link>;
+  }
+
+  function buyButton() {
+    if (productId) {
+      setPurchasedProduct(productId);
+    }
+  }
+
   return (
     <section className="section">
       <div className="container">
@@ -46,6 +61,15 @@ function ShowProduct({ user }: { user: null | IUser }) {
             Delete
           </button>
         )}
+        {product && user?._id === product.user && (
+          <Link to={`/editproduct/${productId}`}>
+            <button className="button is-info">Edit</button>
+          </Link>
+        )}
+        <button onClick={buyButton} className="button is-primary">
+          Buy Now
+        </button>
+        {purchasedProduct && product && <Checkout {...product} />}
       </div>
     </section>
   );

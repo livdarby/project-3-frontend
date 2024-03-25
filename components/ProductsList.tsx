@@ -60,6 +60,7 @@ function ProductsList() {
 
   return (
     <section className="section">
+      {/* Full Product List */}
       <div className="container">
         {/* Search bar */}
         <input
