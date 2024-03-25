@@ -1,21 +1,34 @@
 import React from "react";
 import { IProduct } from "../interfaces/productInterface";
+import axios from "axios";
 
-function Checkout({ price, title }: IProduct) {
-  const [selectedCountry, setSelectedCountry] = React.useState(null);
+type ISelectedCountry = null | string;
+
+function Checkout({ price, title, _id }: IProduct) {
+  const [selectedCountry, setSelectedCountry] =
+    React.useState<ISelectedCountry>(null);
   const [selectTermsAndConditions, setSelectTermsAndConditions] =
     React.useState(false);
+  const [deliveryCost, setDeliveryCost] = React.useState<number>(0);
+
+  console.log(selectedCountry);
 
   function selectCountry(e: any) {
     const country = e.currentTarget.value;
     setSelectedCountry(country);
-    console.log(country);
+    updateDeliveryCost(country);
   }
 
-  const deliveryCost =
-    selectedCountry === "united-kingdom" ? 0 : selectedCountry ? 10.99 : 0;
-  const totalPrice = (price + deliveryCost).toFixed(2);
-  console.log(totalPrice);
+  function updateDeliveryCost(country: string) {
+    const selectedOption = document.querySelector(`option[value="${country}"]`);
+    if (selectedOption && selectedOption.classList.contains("europe")) {
+      setDeliveryCost(10);
+    } else if (selectedOption && selectedOption.classList.contains("uk")) {
+      setDeliveryCost(0);
+    } else {
+      setDeliveryCost(20);
+    }
+  }
 
   function conditions() {
     if (!selectTermsAndConditions) {
@@ -23,6 +36,16 @@ function Checkout({ price, title }: IProduct) {
     } else {
       setSelectTermsAndConditions(false);
     }
+  }
+
+  async function completePurchase() {
+    const resp = await fetch(`/api/products/${_id}`);
+    const data = await resp.json();
+    data.unitsSold++;
+    const update = await axios.post(`/api/unitsSold/${_id}`, {
+      unitsSold: data.unitsSold,
+    });
+    console.log(update);
   }
 
   return (
@@ -88,42 +111,114 @@ function Checkout({ price, title }: IProduct) {
               <option value="" selected disabled>
                 Country
               </option>
-              <option value="andorra">Andorra</option>
-              <option value="austria">Austria</option>
-              <option value="Belarus">Belarus</option>
-              <option value="Bulgaria">Bulgaria</option>
-              <option value="Croatia">Croatia</option>
-              <option value="Cyprus">Cyprus</option>
-              <option value="czech-republic">Czech Republic</option>
-              <option value="denmark">Denmark</option>
-              <option value="estonia">Estonia</option>
-              <option value="finland">Finland</option>
-              <option value="France">France</option>
-              <option value="Germany">Germany</option>
-              <option value="Greece">Greece</option>
-              <option value="Hungary">Hungary</option>
-              <option value="Iceland">Iceland</option>
-              <option value="Ireland">Ireland</option>
-              <option value="Isle-of-Man">Isle of Man</option>
-              <option value="Italy">Italy</option>
-              <option value="Latvia">Latvia</option>
-              <option value="Liechtenstein">Liechtenstein</option>
-              <option value="Lithuania">Lithuania</option>
-              <option value="Luxembourg">Luxembourg</option>
-              <option value="Norway">Norway</option>
-              <option value="Poland">Poland</option>
-              <option value="Portugal">Portugal</option>
-              <option value="Romania">Romania</option>
-              <option value="Russia">Russia</option>
-              <option value="Slovakia">Slovakia</option>
-              <option value="Slovenia">Slovenia</option>
-              <option value="south-africa">South Africa</option>
-              <option value="spain">Spain</option>
-              <option value="sweden">Sweden</option>
-              <option value="switzerland">Switzerland</option>
-              <option value="turkey">Turkey</option>
-              <option value="united-kingdom">United Kingdom</option>
-              <option value="united-states">United States</option>
+              <option className="europe" value="andorra">
+                Andorra
+              </option>
+              <option className="europe" value="austria">
+                Austria
+              </option>
+              <option className="europe" value="Belarus">
+                Belarus
+              </option>
+              <option className="europe" value="Bulgaria">
+                Bulgaria
+              </option>
+              <option className="europe" value="Croatia">
+                Croatia
+              </option>
+              <option className="europe" value="Cyprus">
+                Cyprus
+              </option>
+              <option className="europe" value="czech-republic">
+                Czech Republic
+              </option>
+              <option className="europe" value="denmark">
+                Denmark
+              </option>
+              <option className="europe" value="estonia">
+                Estonia
+              </option>
+              <option className="europe" value="finland">
+                Finland
+              </option>
+              <option className="europe" value="France">
+                France
+              </option>
+              <option className="europe" value="Germany">
+                Germany
+              </option>
+              <option className="europe" value="Greece">
+                Greece
+              </option>
+              <option className="europe" value="Hungary">
+                Hungary
+              </option>
+              <option className="europe" value="Iceland">
+                Iceland
+              </option>
+              <option className="europe" value="Ireland">
+                Ireland
+              </option>
+              <option className="europe" value="Isle-of-Man">
+                Isle of Man
+              </option>
+              <option className="europe" value="Italy">
+                Italy
+              </option>
+              <option className="europe" value="Latvia">
+                Latvia
+              </option>
+              <option className="europe" value="Liechtenstein">
+                Liechtenstein
+              </option>
+              <option className="europe" value="Lithuania">
+                Lithuania
+              </option>
+              <option className="europe" value="Luxembourg">
+                Luxembourg
+              </option>
+              <option className="europe" value="Norway">
+                Norway
+              </option>
+              <option className="europe" value="Poland">
+                Poland
+              </option>
+              <option className="europe" value="Portugal">
+                Portugal
+              </option>
+              <option className="europe" value="Romania">
+                Romania
+              </option>
+              <option className="europe" value="Russia">
+                Russia
+              </option>
+              <option className="europe" value="Slovakia">
+                Slovakia
+              </option>
+              <option className="europe" value="Slovenia">
+                Slovenia
+              </option>
+              <option className="row" value="south-africa">
+                South Africa
+              </option>
+              <option className="europe" value="spain">
+                Spain
+              </option>
+              <option className="europe" value="sweden">
+                Sweden
+              </option>
+              <option className="europe" value="switzerland">
+                Switzerland
+              </option>
+              <option className="europe" value="turkey">
+                Turkey
+              </option>
+              <option className="uk" value="united-kingdom">
+                United Kingdom
+              </option>
+              <option className="row" value="united-states">
+                United States
+              </option>
             </select>
           </span>
           <span className="icon is-small is-left">🌐</span>
@@ -139,7 +234,7 @@ function Checkout({ price, title }: IProduct) {
       </p>
       <p>
         <strong>Total: </strong>£
-        <span>{Number(totalPrice).toLocaleString()}</span>
+        <span>{Number(price + deliveryCost).toLocaleString()}</span>
       </p>
 
       <div className="field mt-5">
@@ -153,7 +248,9 @@ function Checkout({ price, title }: IProduct) {
         </div>
       </div>
       {selectTermsAndConditions && (
-        <button className="button is-link mt-5">Complete Purchase</button>
+        <button onClick={completePurchase} className="button is-link mt-5">
+          Complete Purchase
+        </button>
       )}
     </>
   );

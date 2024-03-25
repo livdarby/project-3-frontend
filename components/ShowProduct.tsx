@@ -5,6 +5,7 @@ import Product from "./ProductCard";
 import { IUser } from "../interfaces/userInterface";
 import axios from "axios";
 import Checkout from "./Checkout";
+import { Link } from "react-router-dom";
 
 function ShowProduct({ user }: { user: null | IUser }) {
   const [product, setProducts] = React.useState<IProduct | null>(null);
@@ -39,6 +40,10 @@ function ShowProduct({ user }: { user: null | IUser }) {
     }
   }
 
+  function editProduct() {
+    <Link to="/edit"></Link>;
+  }
+
   function buyButton() {
     if (productId) {
       setPurchasedProduct(productId);
@@ -55,6 +60,11 @@ function ShowProduct({ user }: { user: null | IUser }) {
           <button onClick={deleteMovie} className="button is-danger">
             Delete
           </button>
+        )}
+        {product && user?._id === product.user && (
+          <Link to={`/editproduct/${productId}`}>
+            <button className="button is-info">Edit</button>
+          </Link>
         )}
         <button onClick={buyButton} className="button is-primary">
           Buy Now
