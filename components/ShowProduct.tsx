@@ -15,12 +15,12 @@ function ShowProduct({ user }: { user: null | IUser }) {
   }, []);
 
   React.useEffect(() => {
-    async function fetchMovies() {
+    async function fetchProducts() {
       const resp = await fetch(`/api/products/${productId}`);
       const productData = await resp.json();
       setProducts(productData);
     }
-    fetchMovies();
+    fetchProducts();
   }, []);
 
   async function deleteMovie(e: SyntheticEvent) {

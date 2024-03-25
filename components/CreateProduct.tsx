@@ -13,6 +13,7 @@ export default function CreateProduct() {
     image: "",
     description: "",
     unitsSold: "",
+    category: "",
   })
 
   function handleChange(e: any) {
@@ -93,18 +94,18 @@ export default function CreateProduct() {
             />
           </div>
         </div>
-         {/* <div className="field">
-          <label className="label">unitsSold</label>
+         <div className="field">
+          <label className="label">Category</label>
           <div className="control">
             <input
               className="input"
-              type="text" // ! No longer a password field
-              name={'unitsSold'} // ! Updating name field to the right name
+              type="text"
+              name={'category'} // ! Updating name field to the right name
               onChange={handleChange}
-              value={formData.unitsSold} // !  Updating the value to the right bit of formData
+              value={formData.category} // ! Updating the value to the right bit of formData
             />
           </div>
-        </div> */}
+        </div>
         <button className="button">Submit</button>
       </form>
     </div>
