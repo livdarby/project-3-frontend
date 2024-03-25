@@ -4,9 +4,13 @@ import { IProduct } from "../interfaces/productInterface";
 import Product from "./ProductCard";
 import { IUser } from "../interfaces/userInterface";
 import axios from "axios";
+import Checkout from "./Checkout";
 
 function ShowProduct({ user }: { user: null | IUser }) {
   const [product, setProducts] = React.useState<IProduct | null>(null);
+  const [purchasedProduct, setPurchasedProduct] = React.useState<string | null>(
+    null
+  );
   const { productId } = useParams();
   const navigate = useNavigate();
 
@@ -35,6 +39,12 @@ function ShowProduct({ user }: { user: null | IUser }) {
     }
   }
 
+  function buyButton() {
+    if (productId) {
+      setPurchasedProduct(productId);
+    }
+  }
+
   return (
     <section className="section">
       <div className="container">
@@ -46,6 +56,10 @@ function ShowProduct({ user }: { user: null | IUser }) {
             Delete
           </button>
         )}
+        <button onClick={buyButton} className="button is-primary">
+          Buy Now
+        </button>
+        {purchasedProduct && product && <Checkout {...product} />}
       </div>
     </section>
   );

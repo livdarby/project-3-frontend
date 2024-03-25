@@ -36,6 +36,16 @@ section.section {
   min-height: calc(100vh - 11.25rem);
 }
 
+.terms-and-conditions {
+  color: #2f323d;
+  cursor: pointer;
+}
+
+.terms-and-conditions:hover {
+  text-decoration: underline;
+  color: #0c75ff;
+}
+
 $footer-background-color: #363636;
 $footer-padding: 2rem 1.5rem;
 $box-padding: 1rem;
