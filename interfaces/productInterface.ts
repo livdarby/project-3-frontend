@@ -5,4 +5,5 @@ export interface IProduct {
   price: number;
   unitsSold: number;
   _id: string;
+  user: string;
 }

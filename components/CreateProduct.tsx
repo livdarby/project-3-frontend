@@ -37,7 +37,7 @@ export default function CreateProduct() {
     })
     console.log(resp.data)
     // ! We're now going to movies
-    navigate('/')
+    navigate('/products')
   }
 
   console.log(formData)
