@@ -4,7 +4,7 @@ import { IProduct } from "../interfaces/productInterface";
 
 type Products = null | Array<IProduct>;
 
-function ProductsList() {
+function SellerHome() {
   const [products, setProducts] = React.useState<Products>(null);
 
   React.useEffect(() => {
@@ -20,6 +20,7 @@ function ProductsList() {
 
   return (
     <section className="section">
+      <p></p>
       {/* Full Product List */}
       <div className="container">
         <div className="columns is-multiline">
@@ -38,4 +39,4 @@ function ProductsList() {
   );
 }
 
-export default ProductsList;
+export default SellerHome;
