@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CreateProduct from "../components/CreateProduct";
 import ShowProduct from "../components/ShowProduct";
+import SellerHome from "../components/SellerHomePage";
 import EditProduct from "../components/EditProduct"
 
 function App() {
@@ -40,7 +41,8 @@ function App() {
           element={<ShowProduct user={user} />}
         />
         <Route path="/editproduct/:productId" element={<EditProduct />} />
-        {/* <Route path="/sellerhome" element={<SellerHome />} />
+        <Route path="/sellerhome" element={<SellerHome />} />
+        {/* <Route path="/checkout" element={<Checkout />} />
          */}
       </Routes>
     </Router>

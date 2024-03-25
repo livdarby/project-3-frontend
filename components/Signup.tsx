@@ -30,7 +30,7 @@ export default function UserSignup() {
     const resp = await axios.post("/api/signup", formData);
     console.log(resp.data); // ! resp.data always contains the data in an axios request.
     // ! take them to the login page
-    // navigate("/login");
+    navigate("/login");
   }
 
   return (
