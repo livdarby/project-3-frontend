@@ -13,7 +13,6 @@ import EditProduct from "../components/EditProduct";
 
 function App() {
   const [user, setUser] = useState(null);
-
   async function fetchUser() {
     const token = localStorage.getItem("token");
     const resp = await axios.get("/api/signup", {
@@ -21,7 +20,7 @@ function App() {
     });
     setUser(resp.data);
   }
-
+  console.log(user);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) fetchUser();
@@ -48,5 +47,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

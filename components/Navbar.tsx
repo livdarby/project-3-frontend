@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { IUser } from "../interfaces/userInterface";
-
 interface NavbarProps {
   user: null | IUser;
   setUser: Function;
@@ -9,7 +8,6 @@ interface NavbarProps {
 function Navbar({ user, setUser }: NavbarProps) {
   console.log("user in the navbar: ", user);
   const navigate = useNavigate();
-
   function logout() {
     localStorage.removeItem("token");
     setUser(null);
@@ -29,7 +27,6 @@ function Navbar({ user, setUser }: NavbarProps) {
                   Home
                 </Link>
               )}
-
               {/* Seller Home Page */}
               {user && (
                 <Link to="/sellerhome" className="navbar-item">
@@ -41,7 +38,6 @@ function Navbar({ user, setUser }: NavbarProps) {
                   Create Product
                 </Link>
               )}
-
               <Link to="/products" className="navbar-item">
                 Shop All
               </Link>
@@ -78,5 +74,4 @@ function Navbar({ user, setUser }: NavbarProps) {
     </>
   );
 }
-
 export default Navbar;
