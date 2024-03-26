@@ -50,12 +50,28 @@ function ShowProduct({ user }: { user: null | IUser }) {
     }
   }
 
+  console.log(user);
+
+  const [sellerName, setSellerName] = React.useState(null);
+
+  async function fetchSeller() {
+    const res = await fetch(`/api/findSellerName/${productId}`);
+    const userData = await res.json();
+    console.log(userData);
+    setSellerName(userData.userName);
+  }
+
+  React.useEffect(() => {
+    fetchSeller();
+  }, []);
+
   return (
     <section className="section">
       <div className="container">
         <div className="columns is-multiline">
           {product && <Product key={product._id} {...product} />}
         </div>
+        <div className="mb-3">Seller: {sellerName}</div>
         {product && user?._id === product.user && (
           <button onClick={deleteMovie} className="button is-danger">
             Delete
@@ -67,7 +83,7 @@ function ShowProduct({ user }: { user: null | IUser }) {
           </Link>
         )}
         <button onClick={buyButton} className="button is-primary">
-          Buy Now
+          Buy Now!
         </button>
         {purchasedProduct && product && <Checkout {...product} />}
       </div>
