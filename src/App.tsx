@@ -21,7 +21,7 @@ function App() {
     });
     setUser(resp.data);
   }
-
+  console.log(user)
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) fetchUser();
