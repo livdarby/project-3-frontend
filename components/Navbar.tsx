@@ -18,7 +18,7 @@ function Navbar({ user, setUser }: NavbarProps) {
   return (
     <>
       <header>
-        <nav className="navbar-brand is-dark ">
+        <nav className="navbar-brand is-background-dark">
           <div className="container has-text-light">
             <div className="navbar-brand">
               {/* Visitor Home Page */}
@@ -61,7 +61,7 @@ function Navbar({ user, setUser }: NavbarProps) {
                 {user && (
                   <button
                     onClick={logout}
-                    className="button navbar-item has-text-light"
+                    className="button navbar-item has-text-dark"
                   >
                     Logout
                   </button>
