@@ -9,7 +9,7 @@ import axios from "axios";
 import CreateProduct from "../components/CreateProduct";
 import ShowProduct from "../components/ShowProduct";
 import SellerHome from "../components/SellerHomePage";
-import EditProduct from "../components/EditProduct"
+import EditProduct from "../components/EditProduct";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -41,7 +41,7 @@ function App() {
           element={<ShowProduct user={user} />}
         />
         <Route path="/editproduct/:productId" element={<EditProduct />} />
-        <Route path="/sellerhome" element={<SellerHome />} />
+        <Route path="/sellerhome" element={<SellerHome user={user} />} />
         {/* <Route path="/checkout" element={<Checkout />} />
          */}
       </Routes>

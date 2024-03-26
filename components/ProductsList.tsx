@@ -10,7 +10,6 @@ function ProductsList() {
   const [search, setSearch] = React.useState("");
   const [value, setValue] = React.useState("");
 
-
   // FUNCTION TO RETURN ALL DATA
   React.useEffect(() => {
     async function fetchProducts() {
@@ -22,7 +21,7 @@ function ProductsList() {
     }
     fetchProducts();
   }, []);
-  
+
   //  FUNCTION TO RETURN FILTERED DATA
   React.useEffect(() => {
     async function fetchProducts() {
@@ -71,7 +70,7 @@ function ProductsList() {
         {/* Drop down */}
         <label className="column drop select is-info mb-4 p-0">
           <select value={value} onChange={handleDropdownChange}>
-            {dropdownCategoryOptions.map((option: any) => { 
+            {dropdownCategoryOptions.map((option: any) => {
               return <option value={option.value}>{option.label}</option>;
             })}
           </select>

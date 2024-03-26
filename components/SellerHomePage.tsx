@@ -1,41 +1,86 @@
-import React from "react";
-import ProductCard from "./ProductCard";
+import { useEffect, useState } from "react";
 import { IProduct } from "../interfaces/productInterface";
+import SellerProductCard from "./SellerProductCard";
+import { useNavigate } from "react-router-dom";
 
 type Products = null | Array<IProduct>;
 
-function SellerHome() {
-  const [products, setProducts] = React.useState<Products>(null);
+function SellerHome({ user }: any) {
+  const navigate = useNavigate();
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [totalUnitsSold, setTotalUnitsSold] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function fetchProducts() {
-      const resp = await fetch("/api/products");
-      const data = await resp.json();
+      if (!user || !user._id) return; // Check if user and user._id are present
+      console.log(user);
+      const response = await fetch(`/api/getProducts/${user._id}`);
+      const data = await response.json();
       setProducts(data);
-    }
-    fetchProducts();
-  }, []);
 
+      let total = 0;
+      for (const product of data) {
+        total += Number(product.unitsSold);
+      }
+      setTotalUnitsSold(total);
+    }
+
+    fetchProducts();
+  }, [user]);
   console.log(products);
 
+  function handleSearchClick() {
+    navigate("/create");
+  }
+
   return (
-    <section className="section">
-      <p></p>
-      {/* Full Product List */}
-      <div className="container">
-        <div className="columns is-multiline">
-          {products?.map((product) => {
-            return (
-              <ProductCard
-                key={product._id}
-                // ! Pass all properties, don't have to declar them individually.
-                {...product}
-              />
-            );
-          })}
+    <>
+      <section className="hero is-link is-fullheight-with-navbar is-link">
+        <div className="hero-body has-text-centered">
+          <div className="container">
+            {/* get the user name displayed */}
+            <p className="title">Welcome {user ? user.userName : ""} 🎉</p>
+            <br />
+            <p className="subtitle">
+              You have sold a total of{" "}
+              <em>
+                <strong> {totalUnitsSold} </strong>
+              </em>
+              units
+            </p>
+            <br />
+            <button
+              className="button is-light is-rounded"
+              onClick={handleSearchClick}
+            >
+              Add A New Product
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+
+        <div>
+          <p className="title has-text-centered is-rounded">
+            <strong>All Your Products</strong>{" "}
+          </p>
+          <br />
+        </div>
+        <div className="container">
+          <div className="columns is-multipline is-mobile is-centered is-two-third-tablet has-text-centered">
+            {products.length ? (
+              products.map((product: any) => (
+                <SellerProductCard
+                  key={product._id}
+                  // ! Pass all properties, don't have to declar them individually.
+                  {...product}
+                />
+              ))
+            ) : (
+              <p>Loading products...</p> // or display "No products found" based on your preference
+            )}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 

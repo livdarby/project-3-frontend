@@ -21,43 +21,54 @@ function Navbar({ user, setUser }: NavbarProps) {
     <>
       <header>
         <nav className="navbar-brand is-dark ">
-          <div className="container">
+          <div className="container has-text-light">
             <div className="navbar-brand">
-              <Link to="/" className="navbar-item">
-                Home
-              </Link>
-              <Link to="/products" className="navbar-item">
-                Shop All
-              </Link>
+              {/* Visitor Home Page */}
+              {!user && (
+                <Link to="/" className="navbar-item">
+                  Home
+                </Link>
+              )}
 
+              {/* Seller Home Page */}
+              {user && (
+                <Link to="/sellerhome" className="navbar-item">
+                  Home
+                </Link>
+              )}
               {user && (
                 <Link to="/create" className="navbar-item">
                   Create Product
                 </Link>
               )}
-              {user && (
-                <button
-                  onClick={logout}
-                  className="button navbar-item is-ghost"
-                >
-                  Logout
-                </button>
-              )}
+
+              <Link to="/products" className="navbar-item">
+                Shop All
+              </Link>
             </div>
           </div>
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                {/* // ! Show and hide appropriate routes for member/visitor */}
+                {/* Visitor navbar */}
                 {!user && (
-                  <Link to="/signup" className="navbar-item">
+                  <Link to="/signup" className="navbar-item has-text-light">
                     Sign up
                   </Link>
                 )}
                 {!user && (
-                  <Link to="/login" className="navbar-item">
+                  <Link to="/login" className="navbar-item has-text-light">
                     Login
                   </Link>
+                )}
+                {/* Seller navbar */}
+                {user && (
+                  <button
+                    onClick={logout}
+                    className="button navbar-item has-text-light"
+                  >
+                    Logout
+                  </button>
                 )}
               </div>
             </div>
