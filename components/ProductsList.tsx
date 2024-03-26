@@ -26,7 +26,7 @@ function ProductsList() {
   //  FUNCTION TO RETURN FILTERED DATA
   React.useEffect(() => {
     async function fetchProducts() {
-      const resp = await fetch(`/api/${value}`);
+      const resp = await fetch(`/api/products`);
       const productData = await resp.json();
       setProducts(productData);
       console.log("fetch product 2");

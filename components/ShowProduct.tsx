@@ -50,6 +50,8 @@ function ShowProduct({ user }: { user: null | IUser }) {
     }
   }
 
+  console.log(user);
+
   return (
     <section className="section">
       <div className="container">
@@ -67,7 +69,7 @@ function ShowProduct({ user }: { user: null | IUser }) {
           </Link>
         )}
         <button onClick={buyButton} className="button is-primary">
-          Buy Now
+          Buy Now!
         </button>
         {purchasedProduct && product && <Checkout {...product} />}
       </div>

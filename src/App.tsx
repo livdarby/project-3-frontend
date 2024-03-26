@@ -9,11 +9,10 @@ import axios from "axios";
 import CreateProduct from "../components/CreateProduct";
 import ShowProduct from "../components/ShowProduct";
 import SellerHome from "../components/SellerHomePage";
-import EditProduct from "../components/EditProduct"
-
+import EditProduct from "../components/EditProduct";
 function App() {
-  const [user, setUser] = useState(null);
 
+  const [user, setUser] = useState(null);
   async function fetchUser() {
     const token = localStorage.getItem("token");
     const resp = await axios.get("/api/signup", {
@@ -26,7 +25,7 @@ function App() {
     const token = localStorage.getItem("token");
     if (token) fetchUser();
   }, []);
-
+  
   return (
     <Router>
       <Navbar user={user} setUser={setUser} />
@@ -48,5 +47,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;
