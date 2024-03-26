@@ -6,6 +6,7 @@ import { IUser } from "../interfaces/userInterface";
 import axios from "axios";
 import Checkout from "./Checkout";
 import { Link } from "react-router-dom";
+import Reviews from "./Reviews"
 
 function ShowProduct({ user }: { user: null | IUser }) {
   const [product, setProducts] = React.useState<IProduct | null>(null);
@@ -86,6 +87,7 @@ function ShowProduct({ user }: { user: null | IUser }) {
           Buy Now!
         </button>
         {purchasedProduct && product && <Checkout {...product} />}
+        {product && <Reviews {...product} />}
       </div>
     </section>
   );

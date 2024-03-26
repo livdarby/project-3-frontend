@@ -16,7 +16,8 @@ function EditProduct() {
     category: "",
     user: "",
     unitsSold: Number(""),
-    _id: "", 
+    _id: "",
+    reviews: [],
   });
 
   console.log(formData);
