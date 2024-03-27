@@ -19,6 +19,7 @@ function Reviews({ _id, reviews }: IProduct) {
 
   const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
 
+
   async function getReviews() {
     const resp = await fetch(`/api/products/${_id}`);
     const product = await resp.json();

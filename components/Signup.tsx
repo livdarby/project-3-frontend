@@ -12,7 +12,20 @@ export default function UserSignup() {
     confirmPassword: "",
   });
 
+  const [errorData, setErrorData] = useState({
+    email: "",
+    userName: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   function handleChange(e: any) {
+    setErrorData({
+      email: "",
+      userName: "",
+      password: "",
+      confirmPassword: "",
+    });
     // we can store the input from the desired target through the name. which we defined in the actual input
     const fieldName = e.target.name;
     //to mutate this we have to clone because react will cry
@@ -25,13 +38,18 @@ export default function UserSignup() {
   console.log(formData);
 
   async function handleSubmit(e: SyntheticEvent) {
-    e.preventDefault(); // prevent the page from refreshing
-    // ! We're going to use axios to post instead of fetch, just because its a bit nicer. Just need to import axios
-    const resp = await axios.post("/api/signup", formData);
-    console.log(resp.data); // ! resp.data always contains the data in an axios request.
-    // ! take them to the login page
-    navigate("/login");
+    try {
+      e.preventDefault();
+      const resp = await axios.post("/api/signup", formData);
+      console.log(resp.data);
+      navigate("/login");
+    } catch (e: any) {
+      setErrorData(e.response.data.errors);
+      console.log(errorData);
+    }
   }
+
+  console.log("errors:", errorData);
 
   return (
     <div className="section">
@@ -50,6 +68,9 @@ export default function UserSignup() {
                 // here is where we target the user in the state
                 value={formData.userName}
               />
+              {errorData.userName && (
+                <small className="has-text-danger">{errorData.userName}</small>
+              )}
             </div>
           </div>
           <div className="field">
@@ -62,6 +83,9 @@ export default function UserSignup() {
                 onChange={handleChange}
                 value={formData.email}
               />
+              {errorData.email && (
+                <small className="has-text-danger">{errorData.email}</small>
+              )}
             </div>
           </div>
           <div className="field">
@@ -74,6 +98,9 @@ export default function UserSignup() {
                 onChange={handleChange}
                 value={formData.password}
               />
+              {errorData.password && (
+                <small className="has-text-danger">{errorData.password}</small>
+              )}
             </div>
           </div>
           <div className="field">
@@ -86,6 +113,11 @@ export default function UserSignup() {
                 onChange={handleChange}
                 value={formData.confirmPassword}
               />
+              {errorData.confirmPassword && (
+                <small className="has-text-danger">
+                  {errorData.confirmPassword}
+                </small>
+              )}
             </div>
           </div>
           <button className="button">Submit</button>

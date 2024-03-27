@@ -13,7 +13,10 @@ export default function Login({ fetchUser }: { fetchUser: Function }) {
     password: "",
   });
 
+  const [errorMessage, setErrorMessage] = React.useState("");
+
   function handleChange(e: any) {
+    setErrorMessage("");
     const fieldName = e.target.name;
     const newFormData = structuredClone(formData);
     newFormData[fieldName as keyof typeof formData] = e.target.value;
@@ -23,17 +26,21 @@ export default function Login({ fetchUser }: { fetchUser: Function }) {
   console.log(formData);
 
   async function handleSubmit(e: SyntheticEvent) {
-    e.preventDefault(); // prevent the page from refreshing
-
-    // ! We're going to use axios to post instead of fetch, just because its a bit nicer.
-    const resp = await axios.post("/api/login", formData);
-    //here we are storing the token in local storage
-    localStorage.setItem("token", resp.data.token);
-    console.log(resp.data);
-    // ! resp.data always contains the data in an axios request.
-    //we need to fetch the user inside here to fix the bug of when you log in it should automatically show you the routes available to you
-    fetchUser();
-    navigate("/sellerhome");
+    try {
+      e.preventDefault(); // prevent the page from refreshing
+      // ! We're going to use axios to post instead of fetch, just because its a bit nicer.
+      const resp = await axios.post("/api/login", formData);
+      //here we are storing the token in local storage
+      localStorage.setItem("token", resp.data.token);
+      console.log(resp.data);
+      // ! resp.data always contains the data in an axios request.
+      //we need to fetch the user inside here to fix the bug of when you log in it should automatically show you the routes available to you
+      fetchUser();
+      navigate("/sellerhome");
+    } catch (e: any) {
+      console.log("there has been an error!", e.response.data.message);
+      setErrorMessage(e.response.data.message);
+    }
   }
 
   return (
@@ -63,6 +70,11 @@ export default function Login({ fetchUser }: { fetchUser: Function }) {
                 value={formData.password}
               />
             </div>
+          </div>
+          <div>
+            {errorMessage && (
+              <small className="has-text-danger">{errorMessage}</small>
+            )}
           </div>
           <div className="navbar-end">
             <button className="button navbar-end">Submit</button>
