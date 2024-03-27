@@ -16,7 +16,7 @@ function Product({ _id, title, image, price, user }: IProduct) {
               <p className="title is-4">{title}</p>
             </div>
           </div>
-          <div className="content">£{price}</div>
+          <div className="content has-text-warning">£{price.toFixed(2)}</div>
         </div>
       </Link>
     </div>

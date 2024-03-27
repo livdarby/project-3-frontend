@@ -48,7 +48,7 @@ function Checkout({ price, title, _id }: IProduct) {
     console.log(update);
   }
 
-  const [modalIsActive, setModalIsActive] = React.useState("none")
+  const [modalIsActive, setModalIsActive] = React.useState("none");
 
   return (
     <>
@@ -56,7 +56,7 @@ function Checkout({ price, title, _id }: IProduct) {
         <div className="modal-background"></div>
         <div className="modal-card">
           <header className="modal-card-head">
-            <p className="modal-card-title">Your order is complete!  🎉</p>
+            <p className="modal-card-title">Your order is complete! 🎉</p>
             <button className="delete" aria-label="close"></button>
           </header>
           <section className="modal-card-body">
@@ -244,21 +244,23 @@ function Checkout({ price, title, _id }: IProduct) {
         </p>
       </div>
       <hr />
-      <p className="subtitle is-3 mt-5">Total</p>
-      <p className="mt-2">
-        <strong>{title}: </strong>£<span>{price.toLocaleString()}</span>
+      <p className="subtitle has-text-grey-dark is-3 mt-5"> Total</p>
+      <p className="mt-2 has-text-darker">
+        <strong>
+          {title}: £<span>{price.toLocaleString()}</span>
+        </strong>
       </p>
-      <p>
+      <p className="mt-2 has-text-darker">
         <strong>Delivery: </strong>£<span>{deliveryCost.toLocaleString()}</span>
       </p>
-      <p>
-        <strong>Total: </strong>£
+      <p className="mt-2 has-text-darker">
+        <strong className="has-text-grey-dark">Total: </strong>£
         <span>{Number(price + deliveryCost).toLocaleString()}</span>
       </p>
 
       <div className="field mt-5">
         <div className="control">
-          <label className="checkbox">
+          <label className="checkbox has-text-grey">
             <input type="checkbox" onClick={conditions} /> I agree to the{" "}
             <a className="terms-and-conditions" href="#">
               terms and conditions

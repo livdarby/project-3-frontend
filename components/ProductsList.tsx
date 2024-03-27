@@ -67,7 +67,7 @@ function ProductsList() {
           <div className="column is-two-thirds">
             {" "}
             <input
-              className="input is-link is-rounded is-focused mr-2 "
+              className="input is-warning is-rounded is-focused mr-2 "
               placeholder="Search Product"
               type="text"
               onChange={handleSearchBarChange}
@@ -75,11 +75,15 @@ function ProductsList() {
               name="searchBar"
             />
           </div>
-          <div className="column is-one-fifth is-link ">
+          <div className="column is-one-fifth ">
             {" "}
-            <div className="select is-rounded is-link">
-              <label className="column drop select is-info mb-4 p-0 is-full">
-                <select value={value} onChange={handleDropdownChange}>
+            <div className="select is-rounded ">
+              <label className="column drop select  is-info mb-4 p-0 is-full">
+                <select
+                  value={value}
+                  onChange={handleDropdownChange}
+                  className="has-background-warning has-text-dark"
+                >
                   {dropdownCategoryOptions.map((option: any) => {
                     return (
                       <option key={option.value} value={option.value}>

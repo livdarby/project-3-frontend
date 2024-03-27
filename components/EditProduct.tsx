@@ -49,14 +49,15 @@ function EditProduct() {
   }
 
   return (
-    <div className="section">
+    <div className="section has-background-link">
+      <p className="title has-text-centered mb-5"> Edit your product here ✍️</p>
       <div className="container">
         <form onSubmit={handleSubmit}>
           <div className="field">
             <label className="label">Product Name</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-rounded"
                 type="text"
                 name={"title"} // ! Updating name field to the right name
                 onChange={handleChange}
@@ -68,7 +69,7 @@ function EditProduct() {
             <label className="label">Price</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-rounded"
                 type="text"
                 name={"price"} // ! Updating name field to the right name
                 onChange={handleChange}
@@ -80,7 +81,7 @@ function EditProduct() {
             <label className="label">Image URL</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-rounded"
                 type="text" // ! No longer a password field
                 name={"image"} // ! Updating name field to the right name
                 onChange={handleChange}
@@ -88,11 +89,11 @@ function EditProduct() {
               />
             </div>
           </div>
-          <div className="field">
+          <div className="field is-rounded">
             <label className="label">Description</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-rounded"
                 type="text" // ! No longer a password field
                 name={"description"} // ! Updating name field to the right name
                 onChange={handleChange}
@@ -104,7 +105,7 @@ function EditProduct() {
             <label className="label">Category</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-rounded"
                 type="text"
                 name={"category"} // ! Updating name field to the right name
                 onChange={handleChange}
@@ -112,7 +113,7 @@ function EditProduct() {
               />
             </div>
           </div>
-          <button className="button">Submit</button>
+          <button className="button is-rounded is-light mt-5">Submit</button>
         </form>
       </div>
     </div>

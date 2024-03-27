@@ -53,15 +53,18 @@ export default function UserSignup() {
 
   return (
     <div className="section">
+      <p className="title has-text-centered mb-5"> Sign Up Here 👇🏽</p>
       <div className="container">
         {/* As its a form we have to do an onsubmit rather than on onclick */}
         <form onSubmit={handleSubmit}>
           <div className="field">
             <label className="label">Username</label>
+
             <div className="control">
               <input
-                className="input"
+                className="input is-rounded"
                 type="text"
+                placeholder="Enter Your Name"
                 name={"userName"}
                 // call the handle change function on an onchange
                 onChange={handleChange}
@@ -73,11 +76,12 @@ export default function UserSignup() {
               )}
             </div>
           </div>
-          <div className="field">
+          <div className="field mt-3">
             <label className="label">Email</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-rounded"
+                placeholder="Enter Email"
                 type="text"
                 name={"email"}
                 onChange={handleChange}
@@ -88,11 +92,12 @@ export default function UserSignup() {
               )}
             </div>
           </div>
-          <div className="field">
+          <div className="field mt-3">
             <label className="label">Password</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-rounded"
+                placeholder="Enter Your Password"
                 type="password"
                 name={"password"}
                 onChange={handleChange}
@@ -103,11 +108,12 @@ export default function UserSignup() {
               )}
             </div>
           </div>
-          <div className="field">
+          <div className="field mt-3">
             <label className="label">Confirm password</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-rounded"
+                placeholder="Enter Password Confirmation"
                 type="password"
                 name={"confirmPassword"}
                 onChange={handleChange}
@@ -120,7 +126,7 @@ export default function UserSignup() {
               )}
             </div>
           </div>
-          <button className="button">Submit</button>
+          <button className="button mt-5 is-rounded is-light">Submit</button>
         </form>
       </div>
     </div>

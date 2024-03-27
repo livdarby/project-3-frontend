@@ -35,11 +35,17 @@ function SellerHome({ user }: any) {
 
   return (
     <>
-      <section className="hero is-link is-fullheight-with-navbar is-link">
+      <section className="hero is-link is-fullheight-with-navbar">
         <div className="hero-body has-text-centered">
           <div className="container">
             {/* get the user name displayed */}
-            <p className="title">Welcome {user ? user.userName : ""} 🎉</p>
+            <p className="title">
+              Welcome{" "}
+              {user
+                ? user.userName.charAt(0).toUpperCase() + user.userName.slice(1)
+                : ""}{" "}
+              🎉
+            </p>
             <br />
             <p className="subtitle">
               You have sold a total of{" "}
@@ -75,7 +81,7 @@ function SellerHome({ user }: any) {
                 />
               ))
             ) : (
-              <p>Loading products...</p> // or display "No products found" based on your preference
+              <p> Add your first product by clicking the button above! 🎉</p> // or display "No products found" based on your preference
             )}
           </div>
         </div>

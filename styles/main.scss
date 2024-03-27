@@ -1,6 +1,10 @@
 :root {
   --home-page-background: #cbaa90;
+  --seller-home-page-background: #f5e1d4;
 }
+// body {
+//   background-color: white;
+// }
 
 .bg-img {
   background-image: url(../img/Easter.png);
@@ -62,16 +66,18 @@ section.section {
 div .custom-box {
   background-color: var(--home-page-background);
 }
+
+section .custom-background-seller {
+  background-color: var(--seller-home-page-background);
+}
+
 .has-border {
-    color: white;
-    /* Set text color to white */
-    text-shadow:
-      -1px -1px 0 #000,
-      1px -1px 0 #000,
-      -1px 1px 0 #000,
-      1px 1px 0 #000;
-    /* Create a black outline around text */
-  }
+  color: white;
+  /* Set text color to white */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  /* Create a black outline around text */
+}
 
 $footer-background-color: #363636;
 $footer-padding: 2rem 1.5rem;
