@@ -48,8 +48,27 @@ function Checkout({ price, title, _id }: IProduct) {
     console.log(update);
   }
 
+  const [modalIsActive, setModalIsActive] = React.useState("none")
+
   return (
     <>
+      <div className="modal">
+        <div className="modal-background"></div>
+        <div className="modal-card">
+          <header className="modal-card-head">
+            <p className="modal-card-title">Your order is complete!  🎉</p>
+            <button className="delete" aria-label="close"></button>
+          </header>
+          <section className="modal-card-body">
+            A confirmation email is on its way to you 🤓
+          </section>
+          <footer className="modal-card-foot">
+            <div className="buttons">
+              <button className="button is-success">Continue Shopping</button>
+            </div>
+          </footer>
+        </div>
+      </div>
       <hr></hr>
       <div className="field mt-5">
         <label className="label">Name</label>
