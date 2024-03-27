@@ -33,7 +33,7 @@ export default function Login({ fetchUser }: { fetchUser: Function }) {
     // ! resp.data always contains the data in an axios request.
     //we need to fetch the user inside here to fix the bug of when you log in it should automatically show you the routes available to you
     fetchUser();
-    navigate("/");
+    navigate("/sellerhome");
   }
 
   return (
@@ -64,7 +64,9 @@ export default function Login({ fetchUser }: { fetchUser: Function }) {
               />
             </div>
           </div>
-          <button className="button">Submit</button>
+          <div className="navbar-end">
+            <button className="button navbar-end">Submit</button>
+          </div>
         </form>
       </div>
     </div>

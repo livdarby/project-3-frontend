@@ -10,8 +10,8 @@ import CreateProduct from "../components/CreateProduct";
 import ShowProduct from "../components/ShowProduct";
 import SellerHome from "../components/SellerHomePage";
 import EditProduct from "../components/EditProduct";
-function App() {
 
+function App() {
   const [user, setUser] = useState(null);
   async function fetchUser() {
     const token = localStorage.getItem("token");
@@ -20,12 +20,12 @@ function App() {
     });
     setUser(resp.data);
   }
-
+  console.log(user);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) fetchUser();
   }, []);
-  
+
   return (
     <Router>
       <Navbar user={user} setUser={setUser} />
@@ -40,7 +40,7 @@ function App() {
           element={<ShowProduct user={user} />}
         />
         <Route path="/editproduct/:productId" element={<EditProduct />} />
-        <Route path="/sellerhome" element={<SellerHome />} />
+        <Route path="/sellerhome" element={<SellerHome user={user} />} />
         {/* <Route path="/checkout" element={<Checkout />} />
          */}
       </Routes>

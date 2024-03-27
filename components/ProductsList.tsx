@@ -6,10 +6,9 @@ type Products = null | Array<IProduct>;
 
 function ProductsList() {
   // const [category, setCategory] = React.useState<any>([]);
-  const [products, setProducts] = React.useState<Products>(null);
+  const [products, setProducts] = React.useState<Products>([]);
   const [search, setSearch] = React.useState("");
   const [value, setValue] = React.useState("");
-
 
   // FUNCTION TO RETURN ALL DATA
   React.useEffect(() => {
@@ -18,21 +17,16 @@ function ProductsList() {
       const data = await resp.json();
       console.log("fetch 1", data);
       setProducts(data);
-      console.log("fetch product 1");
     }
     fetchProducts();
   }, []);
-  
-  //  FUNCTION TO RETURN FILTERED DATA
-  React.useEffect(() => {
-    async function fetchProducts() {
-      const resp = await fetch(`/api/products`);
-      const productData = await resp.json();
-      setProducts(productData);
-      console.log("fetch product 2");
-    }
-    fetchProducts();
-  }, [value]);
+  console.log(products);
+  console.log(
+    "this is the products",
+    products?.map((product) => {
+      return product.category;
+    })
+  );
 
   function handleDropdownChange(e: any) {
     setValue(e.currentTarget.value);
@@ -57,7 +51,7 @@ function ProductsList() {
       );
     });
   }
-
+  console.log("value in drop down", value);
   return (
     <section className="section">
       {/* Full Product List */}
@@ -71,8 +65,12 @@ function ProductsList() {
         {/* Drop down */}
         <label className="column drop select is-info mb-4 p-0">
           <select value={value} onChange={handleDropdownChange}>
-            {dropdownCategoryOptions.map((option: any) => { 
-              return <option value={option.value}>{option.label}</option>;
+            {dropdownCategoryOptions.map((option: any) => {
+              return (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              );
             })}
           </select>
         </label>

@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 
 export default function CreateProduct() {
-
   const navigate = useNavigate();
   // ! Our state should look like a movie now.
   const [formData, setFormData] = useState({
@@ -38,10 +37,17 @@ export default function CreateProduct() {
     });
     console.log(resp.data);
     // ! We're now going to movies
-    navigate("/products");
+    navigate("/sellerhome");
   }
 
   console.log(formData);
+
+  const isFormComplete =
+    formData.title &&
+    formData.price &&
+    formData.image &&
+    formData.description &&
+    formData.category;
 
   return (
     <div className="section">
@@ -110,9 +116,11 @@ export default function CreateProduct() {
                 <option value="Cheese">Cheese</option>
                 <option value="Meat">Meat</option>
               </select>
-                      </div>
+            </div>
           </div>
-          <button className="button">Submit</button>
+          <button className="button" type="submit" disabled={!isFormComplete}>
+            Submit
+          </button>
         </form>
       </div>
     </div>

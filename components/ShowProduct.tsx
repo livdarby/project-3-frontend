@@ -35,7 +35,7 @@ function ShowProduct({ user }: { user: null | IUser }) {
       await axios.delete("/api/products/" + productId, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      navigate("/products");
+      navigate("/sellerhome");
     } catch (e: any) {
       console.log(e.response.data);
     }

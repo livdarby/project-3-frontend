@@ -14,11 +14,11 @@ function Navbar({ user, setUser }: NavbarProps) {
     navigate("/");
     console.log("User logged out");
   }
-  
+
   return (
     <>
       <header>
-        <nav className="navbar-brand is-background-dark">
+        <nav className="navbar-brand is-dark ">
           <div className="container has-text-light">
             <div className="navbar-brand">
               {/* Visitor Home Page */}
@@ -61,7 +61,7 @@ function Navbar({ user, setUser }: NavbarProps) {
                 {user && (
                   <button
                     onClick={logout}
-                    className="button navbar-item has-text-dark"
+                    className="button navbar-item has-text-light"
                   >
                     Logout
                   </button>
