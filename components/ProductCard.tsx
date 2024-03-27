@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { IProduct } from "../interfaces/productInterface";
 import React from "react";
 
-function Product({ _id, title, image, price, user }: IProduct) {
+function Product({ _id, title, image, price, user, description }: IProduct) {
   
 
   return (

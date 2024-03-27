@@ -9,8 +9,6 @@ function ProductsList() {
   const [products, setProducts] = React.useState<Products>([]);
   const [search, setSearch] = React.useState("");
   const [value, setValue] = React.useState("");
-  
-
 
   // FUNCTION TO RETURN ALL DATA
   React.useEffect(() => {
@@ -22,10 +20,13 @@ function ProductsList() {
     }
     fetchProducts();
   }, []);
-  console.log(products)
-  console.log("this is the products",products?.map ((product) => {
-    return product.category
-  }));
+  console.log(products);
+  console.log(
+    "this is the products",
+    products?.map((product) => {
+      return product.category;
+    })
+  );
 
   function handleDropdownChange(e: any) {
     setValue(e.currentTarget.value);
@@ -50,11 +51,11 @@ function ProductsList() {
       );
     });
   }
-console.log("value in drop down", value)
+  console.log("value in drop down", value);
   return (
-    <section className="section">
+    <section>
       {/* Full Product List */}
-      <div className="container">
+      <div>
         {/* Search bar */}
         <input
           className="column is-two-third input mb-4 "
@@ -64,24 +65,29 @@ console.log("value in drop down", value)
         {/* Drop down */}
         <label className="column drop select is-info mb-4 p-0">
           <select value={value} onChange={handleDropdownChange}>
-            {dropdownCategoryOptions.map((option: any) => { 
-              return <option 
-              key={option.value}
-              value={option.value}>{option.label}</option>;
+            {dropdownCategoryOptions.map((option: any) => {
+              return (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              );
             })}
-         
           </select>
         </label>
-        <div className="columns is-multiline">
-          {filterProducts()?.map((product: any) => {
-            return (
-              <ProductCard
-                key={product._id}
-                // ! Pass all properties, don't have to declar them individually.
-                {...product}
-              />
-            );
-          })}
+        <div className="section">
+          <div className = "columns is-mobile  is-two-third-tablet ">
+            <div className="column is-multiline  is-centered">
+            {filterProducts()?.map((product: any) => {
+              return (
+                <ProductCard
+                  key={product._id}
+                  // ! Pass all properties, don't have to declar them individually.
+                  {...product}
+                />
+              );
+            })}
+          </div>
+          </div>
         </div>
       </div>
     </section>

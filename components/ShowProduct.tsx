@@ -6,6 +6,7 @@ import { IUser } from "../interfaces/userInterface";
 import axios from "axios";
 import Checkout from "./Checkout";
 import { Link } from "react-router-dom";
+// import {IndividualProduct} from "../components/ShowindividualCard"
 
 function ShowProduct({ user }: { user: null | IUser }) {
   const [product, setProducts] = React.useState<IProduct | null>(null);
@@ -28,7 +29,7 @@ function ShowProduct({ user }: { user: null | IUser }) {
     fetchProducts();
   }, []);
 
-  async function deleteMovie(e: SyntheticEvent) {
+  async function deleteProduct(e: SyntheticEvent) {
     try {
       const token = localStorage.getItem("token");
       await axios.delete("/api/products/" + productId, {
@@ -69,23 +70,50 @@ function ShowProduct({ user }: { user: null | IUser }) {
     <section className="section">
       <div className="container">
         <div className="columns is-multiline">
-          {product && <Product key={product._id} {...product} />}
+          {/* {product && <IndividualProduct key={product._id} {...product} />} */}
         </div>
-        <div className="mb-3">Seller: {sellerName}</div>
-        {product && user?._id === product.user && (
-          <button onClick={deleteMovie} className="button is-danger">
-            Delete
-          </button>
-        )}
-        {product && user?._id === product.user && (
-          <Link to={`/editproduct/${productId}`}>
-            <button className="button is-info">Edit</button>
-          </Link>
-        )}
-        <button onClick={buyButton} className="button is-primary">
-          Buy Now!
-        </button>
-        {purchasedProduct && product && <Checkout {...product} />}
+        <div className="hero is-fullheight">
+          <div className="box is-centered custom-box">
+            <div className="columns is-multiline">
+              <div className="column is-two-fifths">
+                <figure className="image is-full-width">
+                  <img src={product?.image} alt={product?.title} />
+                </figure>
+              </div>
+              <div className="column is-one-third">
+                <div className="content">
+                  <h2 className="is-size-2 has-text-white ">{product?.title}</h2>
+                  <h5 className="mt-2 mb-1 has-text-white ">Price:</h5>
+                  <div className="has-text-white ">£{product?.price}</div>
+                  <h5 className="mt-4 mb-1 has-text-white ">Description</h5>
+                  <div className="has-text-white ">{product?.description}</div>
+                </div>
+              </div>
+              <div className="column ">
+                <p className="is-pulled-right has-text-white ">
+                  Category: {product?.category}
+                </p>
+              </div>
+            </div>
+            <div className="mb-3 has-text-white ">Seller: {sellerName}</div>
+            {product && user?._id === product.user && (
+              <button onClick={deleteProduct} className="button has-background-warning-dark has-text-centered is-rounded">
+                Delete
+              </button>
+            )}
+            {product && user?._id === product.user && (
+              <Link to={`/editproduct/${productId}`}>
+                <button className="button has-background-warning-dark has-text-centered is-rounded">Edit</button>
+              </Link>
+            )}
+            {product && !user && (
+            <button onClick={buyButton} className="button has-background-warning-dark has-text-centered is-rounded">
+              Buy Now!
+            </button>)}
+            {purchasedProduct && product && <Checkout {...product} />}
+            
+          </div>
+        </div>
       </div>
     </section>
   );
