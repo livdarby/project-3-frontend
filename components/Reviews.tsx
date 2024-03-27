@@ -46,6 +46,7 @@ function Reviews({ _id, reviews }: IProduct) {
     await axios.put(`/api/reviews/${_id}`, {
       reviews: [{ name: textInput.name, review: textInput.review_text }],
     });
+    window.location.reload();
     getReviews();
     setIsButtonDisabled(true);
     setTextInput({
