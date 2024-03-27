@@ -7,7 +7,7 @@ import axios from "axios";
 import Checkout from "./Checkout";
 import { Link } from "react-router-dom";
 // import {IndividualProduct} from "../components/ShowindividualCard"
-import Reviews from "./Reviews"
+import Reviews from "./Reviews";
 
 function ShowProduct({ user }: { user: null | IUser }) {
   const [product, setProducts] = React.useState<IProduct | null>(null);
@@ -83,10 +83,14 @@ function ShowProduct({ user }: { user: null | IUser }) {
               </div>
               <div className="column is-one-third">
                 <div className="content">
-                  <h2 className="is-size-2 has-text-white ">{product?.title}</h2>
+                  <h2 className="is-size-2 has-text-white ">
+                    {product?.title}
+                  </h2>
                   <h5 className="mt-2 mb-1 has-text-white ">Price:</h5>
-                  <div className="has-text-white ">£{product?.price}</div>
-                  <h5 className="mt-4 mb-1 has-text-white ">Description</h5>
+                  <div className="has-text-white ">
+                    £{product?.price.toFixed(2)}
+                  </div>
+                  <h5 className="mt-4 mb-1 has-text-white ">Description:</h5>
                   <div className="has-text-white ">{product?.description}</div>
                 </div>
               </div>
@@ -98,21 +102,30 @@ function ShowProduct({ user }: { user: null | IUser }) {
             </div>
             <div className="mb-3 has-text-white ">Seller: {sellerName}</div>
             {product && user?._id === product.user && (
-              <button onClick={deleteProduct} className="button has-background-warning-dark has-text-centered is-rounded">
+              <button
+                onClick={deleteProduct}
+                className="button has-background-warning-dark has-text-centered has-text-light is-rounded"
+              >
                 Delete
               </button>
             )}
             {product && user?._id === product.user && (
               <Link to={`/editproduct/${productId}`}>
-                <button className="button has-background-warning-dark has-text-centered is-rounded">Edit</button>
+                <button className="has-text-light button has-background-warning-dark has-text-centered is-rounded">
+                  Edit
+                </button>
               </Link>
             )}
             {product && !user && (
-            <button onClick={buyButton} className="button has-background-warning-dark has-text-centered is-rounded">
-              Buy Now!
-            </button>)}
+              <button
+                onClick={buyButton}
+                className="has-text-light button has-background-warning-dark has-text-centered is-rounded"
+              >
+                Buy Now!
+              </button>
+            )}
             {purchasedProduct && product && <Checkout {...product} />}
-            
+            {product && <Reviews {...product} />}
           </div>
         </div>
       </div>

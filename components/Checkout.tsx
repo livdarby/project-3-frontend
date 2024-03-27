@@ -1,6 +1,9 @@
 import React from "react";
 import { IProduct } from "../interfaces/productInterface";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Confetti from "react-confetti";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 type ISelectedCountry = string;
 
@@ -11,7 +14,8 @@ function Checkout({ price, title, _id }: IProduct) {
     React.useState(false);
   const [deliveryCost, setDeliveryCost] = React.useState<number>(0);
 
-  console.log(selectedCountry);
+  const navigate = useNavigate();
+  const { width, height } : any = useWindowSize();
 
   function selectCountry(e: any) {
     const country = e.currentTarget.value;
@@ -45,26 +49,44 @@ function Checkout({ price, title, _id }: IProduct) {
     const update = await axios.post(`/api/unitsSold/${_id}`, {
       unitsSold: data.unitsSold,
     });
-    console.log(update);
+    setModalIsActive(true);
   }
 
-  const [modalIsActive, setModalIsActive] = React.useState("none")
+  const [modalIsActive, setModalIsActive] = React.useState(false);
+
+  function closeModal() {
+    setModalIsActive(false);
+  }
+
+  function continueShopping() {
+    navigate("/products");
+  }
 
   return (
     <>
-      <div className="modal">
+      <div className={`modal ${modalIsActive && "is-active"}`}>
+        <Confetti width={width} height={height} />
         <div className="modal-background"></div>
         <div className="modal-card">
           <header className="modal-card-head">
-            <p className="modal-card-title">Your order is complete!  🎉</p>
-            <button className="delete" aria-label="close"></button>
+            <p className="modal-card-title">Your order is complete! 🎉</p>
+            <button
+              onClick={closeModal}
+              className="delete"
+              aria-label="close"
+            ></button>
           </header>
           <section className="modal-card-body">
             A confirmation email is on its way to you 🤓
           </section>
           <footer className="modal-card-foot">
             <div className="buttons">
-              <button className="button is-success">Continue Shopping</button>
+              <button
+                onClick={continueShopping}
+                className="button is-dark is-rounded"
+              >
+                Continue Shopping
+              </button>
             </div>
           </footer>
         </div>
@@ -266,7 +288,7 @@ function Checkout({ price, title, _id }: IProduct) {
           </label>
         </div>
       </div>
-      {selectTermsAndConditions && (
+      {selectTermsAndConditions &&  (
         <button onClick={completePurchase} className="button is-link mt-5">
           Complete Purchase
         </button>

@@ -35,7 +35,7 @@ function SellerHome({ user }: any) {
 
   return (
     <>
-      <section className="hero is-link is-fullheight-with-navbar is-link">
+      <section className="hero is-fullheight-with-navbar has-background-warning-light">
         <div className="hero-body has-text-centered">
           <div className="container">
             {/* get the user name displayed */}
@@ -57,7 +57,6 @@ function SellerHome({ user }: any) {
             </button>
           </div>
         </div>
-
         <div>
           <p className="title has-text-centered is-rounded">
             <strong>All Your Products</strong>{" "}

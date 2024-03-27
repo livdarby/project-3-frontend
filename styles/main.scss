@@ -63,15 +63,12 @@ div .custom-box {
   background-color: var(--home-page-background);
 }
 .has-border {
-    color: white;
-    /* Set text color to white */
-    text-shadow:
-      -1px -1px 0 #000,
-      1px -1px 0 #000,
-      -1px 1px 0 #000,
-      1px 1px 0 #000;
-    /* Create a black outline around text */
-  }
+  color: white;
+  /* Set text color to white */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  /* Create a black outline around text */
+}
 
 $footer-background-color: #363636;
 $footer-padding: 2rem 1.5rem;

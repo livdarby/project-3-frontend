@@ -113,7 +113,7 @@ export default function CreateProduct() {
                 <option value="">Select a cateogry</option>
                 <option value="Pastries">Pastries</option>
                 <option value="Cheese">Cheese</option>
-                <option value="Meat">Meat</option>
+                <option value="Meat">Chocolate</option>
               </select>
             </div>
           </div>

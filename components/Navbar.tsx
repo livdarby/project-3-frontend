@@ -18,7 +18,7 @@ function Navbar({ user, setUser }: NavbarProps) {
   return (
     <>
       <header>
-        <nav className="navbar-brand is-dark ">
+        <nav className="navbar-brand is-background-dark">
           <div className="container has-text-light">
             <div className="navbar-brand">
               {/* Visitor Home Page */}
@@ -38,9 +38,11 @@ function Navbar({ user, setUser }: NavbarProps) {
                   Create Product
                 </Link>
               )}
-              <Link to="/products" className="navbar-item">
-                Shop All
-              </Link>
+              {!user && (
+                <Link to="/products" className="navbar-item">
+                  Shop All
+                </Link>
+              )}
             </div>
           </div>
           <div className="navbar-end">
@@ -61,7 +63,7 @@ function Navbar({ user, setUser }: NavbarProps) {
                 {user && (
                   <button
                     onClick={logout}
-                    className="button navbar-item has-text-light"
+                    className="button navbar-item is-background-dark has-text-light"
                   >
                     Logout
                   </button>
