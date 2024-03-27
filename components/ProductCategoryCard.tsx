@@ -6,7 +6,7 @@ function HomePageProductCard({ category }: any) {
   console.log(`This is the category: ${category}`);
   return (
     <div className="column ">
-      <Link to="/products">
+      <Link to="/products" state={{ HomePageProductCard: true }}>
         <div className="card">
           <div className="card-header has-background-warning-dark has-text-centered is-round">
             <div className="card-header-title">{`${category

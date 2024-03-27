@@ -1,7 +1,6 @@
 import { SyntheticEvent, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import React from "react";
 
 export default function CreateProduct() {
   const navigate = useNavigate();

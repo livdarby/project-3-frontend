@@ -19,7 +19,7 @@ function Home() {
     fetchCategories();
   }, []);
 
-  console.log(`These have been fetched: ${categories}`);
+  console.log(`These have categories been fetched: ${categories}`);
 
   function handleSearchClick() {
     navigate("/products");
