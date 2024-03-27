@@ -1,9 +1,22 @@
 import { Link } from "react-router-dom";
-import { IProduct } from "../interfaces/productInterface";
 
-function Product({ _id, title, image, price, user }: IProduct) {
+interface SellerProductCardProps {
+  title: string;
+  image: string;
+  unitsSold: number;
+  _id: number;
+}
+
+function SellerProductCard({
+  title,
+  image,
+  unitsSold,
+  _id,
+}: SellerProductCardProps) {
+  console.log(title, image, unitsSold, _id);
+
   return (
-    <div className="card is-mobile mt-4 mb-3">
+    <div className="card is-mobile">
       <Link to={`/product/${_id}`}>
         <div className="card-image">
           <figure className="image is-4by3">
@@ -16,11 +29,11 @@ function Product({ _id, title, image, price, user }: IProduct) {
               <p className="title is-4">{title}</p>
             </div>
           </div>
-          <div className="content">£{price}</div>
+          <div className="content">Units Sold: {unitsSold}</div>
         </div>
       </Link>
     </div>
   );
 }
 
-export default Product;
+export default SellerProductCard;

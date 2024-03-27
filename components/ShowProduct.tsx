@@ -7,6 +7,7 @@ import axios from "axios";
 import Checkout from "./Checkout";
 import { Link } from "react-router-dom";
 // import {IndividualProduct} from "../components/ShowindividualCard"
+import Reviews from "./Reviews"
 
 function ShowProduct({ user }: { user: null | IUser }) {
   const [product, setProducts] = React.useState<IProduct | null>(null);
@@ -35,7 +36,7 @@ function ShowProduct({ user }: { user: null | IUser }) {
       await axios.delete("/api/products/" + productId, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      navigate("/products");
+      navigate("/sellerhome");
     } catch (e: any) {
       console.log(e.response.data);
     }

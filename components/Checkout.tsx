@@ -2,11 +2,11 @@ import React from "react";
 import { IProduct } from "../interfaces/productInterface";
 import axios from "axios";
 
-type ISelectedCountry = null | string;
+type ISelectedCountry = string;
 
 function Checkout({ price, title, _id }: IProduct) {
   const [selectedCountry, setSelectedCountry] =
-    React.useState<ISelectedCountry>(null);
+    React.useState<ISelectedCountry>("1");
   const [selectTermsAndConditions, setSelectTermsAndConditions] =
     React.useState(false);
   const [deliveryCost, setDeliveryCost] = React.useState<number>(0);
@@ -107,8 +107,8 @@ function Checkout({ price, title, _id }: IProduct) {
       <div className="field mt-1">
         <p className="control has-icons-left">
           <span className="select">
-            <select onChange={selectCountry}>
-              <option value="" selected disabled>
+            <select value={selectedCountry} onChange={selectCountry}>
+              <option value="1" disabled>
                 Country
               </option>
               <option className="europe" value="andorra">

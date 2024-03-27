@@ -37,9 +37,9 @@ function ProductsList() {
 
   const dropdownCategoryOptions = [
     { label: "Select Category", value: "" },
-    { label: "Pastries", value: "pastries" },
+    { label: "Pastries", value: "Pastries" },
     { label: "Cheese", value: "Cheese" },
-    { label: "Meat", value: "meat" },
+    { label: "Chocolate", value: "Chocolate" },
   ];
 
   function filterProducts() {
@@ -53,30 +53,49 @@ function ProductsList() {
   }
   console.log("value in drop down", value);
   return (
-    <section>
-      {/* Full Product List */}
-      <div>
-        {/* Search bar */}
-        <input
-          className="column is-two-third input mb-4 "
-          placeholder="Search product.."
-          onChange={handleSearchBarChange}
-        />
-        {/* Drop down */}
-        <label className="column drop select is-info mb-4 p-0">
-          <select value={value} onChange={handleDropdownChange}>
-            {dropdownCategoryOptions.map((option: any) => {
-              return (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              );
-            })}
-          </select>
-        </label>
-        <div className="section">
-          <div className = "columns is-mobile  is-two-third-tablet ">
-            <div className="column is-multiline  is-centered">
+    <>
+      <section className="hero">
+        <figure className="image image is-3by1">
+          <img src="../img/list-page-banner.jpg" />
+        </figure>
+      </section>
+
+      <section>
+        <div className="columns is-1 is-mobile is-centered pt-6">
+          {/* <div className="column is-one-fifth"></div> */}
+          {/* search bar */}
+          <div className="column is-two-thirds">
+            {" "}
+            <input
+              className="input is-link is-rounded is-focused mr-2 "
+              placeholder="Search Product"
+              type="text"
+              onChange={handleSearchBarChange}
+              id="searchBar"
+              name="searchBar"
+            />
+          </div>
+          <div className="column is-one-fifth is-link ">
+            {" "}
+            <div className="select is-rounded is-link">
+              <label className="column drop select is-info mb-4 p-0 is-full">
+                <select value={value} onChange={handleDropdownChange}>
+                  {dropdownCategoryOptions.map((option: any) => {
+                    return (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    );
+                  })}
+                </select>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="section">
+        <div>
+          <div className="columns is-multiline">
             {filterProducts()?.map((product: any) => {
               return (
                 <ProductCard
@@ -87,10 +106,9 @@ function ProductsList() {
               );
             })}
           </div>
-          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

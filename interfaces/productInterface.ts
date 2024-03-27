@@ -1,3 +1,10 @@
+interface IReview {
+  name: string;
+  review: string;
+  date: string;
+  time: string;
+}
+
 export interface IProduct {
   image: string;
   title: string;
@@ -7,4 +14,5 @@ export interface IProduct {
   _id: string;
   user: string;
   category: string;
+  reviews: Array<IReview>;
 }
