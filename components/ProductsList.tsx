@@ -1,6 +1,7 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import { IProduct } from "../interfaces/productInterface";
+import {baseUrl} from "../src/config"
 
 type Products = null | Array<IProduct>;
 
@@ -13,7 +14,7 @@ function ProductsList() {
   // FUNCTION TO RETURN ALL DATA
   React.useEffect(() => {
     async function fetchProducts() {
-      const resp = await fetch("/api/products");
+      const resp = await fetch(`${baseUrl}/products`);
       const data = await resp.json();
       console.log("fetch 1", data);
       setProducts(data);

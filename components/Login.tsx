@@ -3,6 +3,7 @@ import axios from "axios";
 // ! This will navigate the page when the user logs in
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import {baseUrl} from "../src/config"
 
 export default function Login({ fetchUser }: { fetchUser: Function }) {
   // ! navigate is a function to call to take the user to another page.
@@ -29,7 +30,7 @@ export default function Login({ fetchUser }: { fetchUser: Function }) {
     try {
       e.preventDefault(); // prevent the page from refreshing
       // ! We're going to use axios to post instead of fetch, just because its a bit nicer.
-      const resp = await axios.post("/api/login", formData);
+      const resp = await axios.post(`${baseUrl}/login`, formData);
       //here we are storing the token in local storage
       localStorage.setItem("token", resp.data.token);
       console.log(resp.data);

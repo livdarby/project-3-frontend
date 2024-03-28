@@ -1,6 +1,7 @@
 import { SyntheticEvent, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {baseUrl} from "../src/config"
 
 export default function CreateProduct() {
   const navigate = useNavigate();
@@ -31,11 +32,11 @@ export default function CreateProduct() {
     // newFormData.year = Number(newFormData.year)
 
     // ! Here we attach the token to the request to the API.
-    const resp = await axios.post("/api/products", formData, {
+    const resp = await axios.post(`${baseUrl}/products`, formData, {
       headers: { Authorization: `Bearer ${token}` },
     });
     // console.log(resp.data);
-    // ! We're now going to movies
+    // ! We're now going to homepage
     navigate("/sellerhome");
   }
 
