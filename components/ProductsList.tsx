@@ -55,8 +55,8 @@ function ProductsList() {
   console.log("value in drop down", value);
   return (
     <>
-      <section className="hero">
-        <div className="hero-body bg-img">
+      <section className="hero is-medium has-text-centered">
+        <div className="hero-body bg-img2">
           <p className="title">Product List</p>
         </div>
       </section>
