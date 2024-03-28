@@ -57,7 +57,7 @@ function ProductsList() {
     <>
       <section className="hero">
         <figure className="image image is-3by1">
-          <img src="../img/list-page-banner.jpg" />
+          <img src="../img/list-page-banner" />
         </figure>
       </section>
 
