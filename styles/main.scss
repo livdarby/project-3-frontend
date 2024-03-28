@@ -1,6 +1,10 @@
 :root {
   --home-page-background: #cbaa90;
+  --seller-home-page-background: #f5e1d4;
 }
+// body {
+//   background-color: white;
+// }
 
 .bg-img {
   background-image: url(../img/Easter.png);
@@ -62,6 +66,11 @@ section.section {
 div .custom-box {
   background-color: var(--home-page-background);
 }
+
+section .custom-background-seller {
+  background-color: var(--seller-home-page-background);
+}
+
 .has-border {
   color: white;
   /* Set text color to white */

@@ -19,7 +19,6 @@ function Reviews({ _id, reviews }: IProduct) {
 
   const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
 
-
   async function getReviews() {
     const resp = await fetch(`/api/products/${_id}`);
     const product = await resp.json();
@@ -59,7 +58,7 @@ function Reviews({ _id, reviews }: IProduct) {
   return (
     <section className="mt-5">
       <div>
-        <p className="subtitle is-4">Reviews</p>
+        <p className="subtitle is-4 has-text-grey mb-3">Reviews</p>
       </div>
 
       <textarea
@@ -69,14 +68,14 @@ function Reviews({ _id, reviews }: IProduct) {
         name={"review_text"}
       ></textarea>
       <input
-        className="input"
+        className="input mt-1"
         type="text"
         placeholder="Your name"
         onChange={handleChange}
         name={"name"}
       />
       <button
-        className="button"
+        className="button has-background-warning-dark has-text-centered is-rounded mt-4"
         onClick={handleClick}
         disabled={isButtonDisabled}
       >
@@ -86,8 +85,9 @@ function Reviews({ _id, reviews }: IProduct) {
         reviews.map((item: any) => {
           return (
             <>
-              <article className="mt-5 message">
-                <div className="message-header">
+              <article className="mt-5 message has-text-grey">
+                <div className="subtitle mt-5"> Posted Reviews :</div>
+                <div className="message-header has-text-warning">
                   {item.name}{" "}
                   <small>
                     Posted on {item.date} at {item.time}

@@ -18,12 +18,12 @@ function Navbar({ user, setUser }: NavbarProps) {
   return (
     <>
       <header>
-        <nav className="navbar-brand is-background-dark">
+        <nav className="navbar-brand has-background-dark">
           <div className="container has-text-light">
             <div className="navbar-brand">
               {/* Visitor Home Page */}
               {!user && (
-                <Link to="/" className="navbar-item">
+                <Link to="/" className="navbar-item ">
                   Home
                 </Link>
               )}
@@ -63,7 +63,7 @@ function Navbar({ user, setUser }: NavbarProps) {
                 {user && (
                   <button
                     onClick={logout}
-                    className="button navbar-item is-background-dark has-text-light"
+                    className="button navbar-item is-link has-text-white is-rounded "
                   >
                     Logout
                   </button>

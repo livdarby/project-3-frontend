@@ -34,12 +34,12 @@ export default function CreateProduct() {
     const resp = await axios.post("/api/products", formData, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log(resp.data);
+    // console.log(resp.data);
     // ! We're now going to movies
     navigate("/sellerhome");
   }
 
-  console.log(formData);
+  // console.log(formData);
 
   const isFormComplete =
     formData.title &&
@@ -49,26 +49,32 @@ export default function CreateProduct() {
     formData.category;
 
   return (
-    <div className="section">
+    <div className="section has-background-link">
+      <p className="title has-text-centered has-text-white mb-5">
+        {" "}
+        Create a Product ⬇️
+      </p>
       <div className="container">
         <form onSubmit={handleSubmit}>
           <div className="field">
             <label className="label">Product Name</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-rounded"
                 type="text"
+                placeholder="Product Name"
                 name={"title"} // ! Updating name field to the right name
                 onChange={handleChange}
                 value={formData.title} // ! Updating the value to the right bit of formData
               />
             </div>
           </div>
-          <div className="field">
+          <div className="field mt-3">
             <label className="label">Price</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-rounded"
+                placeholder="Product Price"
                 type="text"
                 name={"price"} // ! Updating name field to the right name
                 onChange={handleChange}
@@ -76,11 +82,12 @@ export default function CreateProduct() {
               />
             </div>
           </div>
-          <div className="field">
+          <div className="field mt-3">
             <label className="label">Image URL</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-rounded"
+                placeholder="Product image link"
                 type="text" // ! No longer a password field
                 name={"image"} // ! Updating name field to the right name
                 onChange={handleChange}
@@ -88,11 +95,12 @@ export default function CreateProduct() {
               />
             </div>
           </div>
-          <div className="field">
+          <div className="field mt-3">
             <label className="label">Description</label>
             <div className="control">
               <input
-                className="input"
+                className="input is-rounded"
+                placeholder="Product Description"
                 type="text" // ! No longer a password field
                 name={"description"} // ! Updating name field to the right name
                 onChange={handleChange}
@@ -100,24 +108,28 @@ export default function CreateProduct() {
               />
             </div>
           </div>
-          <div className="field">
+          <div className="field mt-3">
             <label className="label">Category</label>
             <div className="control">
               <select
-                className="input"
+                className="input is-rounded "
                 // type="text"
                 name={"category"} // ! Updating name field to the right name
                 onChange={handleChange}
                 value={formData.category} // ! Updating the value to the right bit of formData
               >
-                <option value="">Select a cateogry</option>
+                <option value="">Select a category ⬇️</option>
                 <option value="Pastries">Pastries</option>
                 <option value="Cheese">Cheese</option>
-                <option value="Meat">Chocolate</option>
+                <option value="Chocolate">Chocolate</option>
               </select>
             </div>
           </div>
-          <button className="button" type="submit" disabled={!isFormComplete}>
+          <button
+            className="button mt-5 is-rounded is-light"
+            type="submit"
+            disabled={!isFormComplete}
+          >
             Submit
           </button>
         </form>

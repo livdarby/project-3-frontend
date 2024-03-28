@@ -18,7 +18,7 @@ function ShowProduct({ user }: { user: null | IUser }) {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    console.log("An individual product Page has mounted");
+    // console.log("An individual product Page has mounted");
   }, []);
 
   React.useEffect(() => {
@@ -38,7 +38,7 @@ function ShowProduct({ user }: { user: null | IUser }) {
       });
       navigate("/sellerhome");
     } catch (e: any) {
-      console.log(e.response.data);
+      // console.log(e.response.data);
     }
   }
 
@@ -52,14 +52,14 @@ function ShowProduct({ user }: { user: null | IUser }) {
     }
   }
 
-  console.log(user);
+  // console.log(user);
 
   const [sellerName, setSellerName] = React.useState(null);
 
   async function fetchSeller() {
     const res = await fetch(`/api/findSellerName/${productId}`);
     const userData = await res.json();
-    console.log(userData);
+    // console.log(userData);
     setSellerName(userData.userName);
   }
 
@@ -73,11 +73,11 @@ function ShowProduct({ user }: { user: null | IUser }) {
         <div className="columns is-multiline">
           {/* {product && <IndividualProduct key={product._id} {...product} />} */}
         </div>
-        <div className="hero is-fullheight">
+        <div className="hero is-fullheight ">
           <div className="box is-centered custom-box">
             <div className="columns is-multiline">
               <div className="column is-two-fifths">
-                <figure className="image is-full-width">
+                <figure className="image is-full-width image is-square">
                   <img src={product?.image} alt={product?.title} />
                 </figure>
               </div>
@@ -92,6 +92,29 @@ function ShowProduct({ user }: { user: null | IUser }) {
                   </div>
                   <h5 className="mt-4 mb-1 has-text-white ">Description:</h5>
                   <div className="has-text-white ">{product?.description}</div>
+                  {product && !user && (
+                    <button
+                      onClick={buyButton}
+                      className="button has-background-warning-dark has-text-centered is-rounded mt-5"
+                    >
+                      Buy Now
+                    </button>
+                  )}
+                  {product && user?._id === product.user && (
+                    <button
+                      onClick={deleteProduct}
+                      className="button has-background-link has-text-centered is-rounded mt-5"
+                    >
+                      Delete
+                    </button>
+                  )}
+                  {product && user?._id === product.user && (
+                    <Link to={`/editproduct/${productId}`}>
+                      <button className="button has-background-link-light has-text-dark has-text-centered is-rounded ml-3 mt-5">
+                        Edit
+                      </button>
+                    </Link>
+                  )}
                 </div>
               </div>
               <div className="column ">
@@ -101,31 +124,12 @@ function ShowProduct({ user }: { user: null | IUser }) {
               </div>
             </div>
             <div className="mb-3 has-text-white ">Seller: {sellerName}</div>
-            {product && user?._id === product.user && (
-              <button
-                onClick={deleteProduct}
-                className="button has-background-warning-dark has-text-centered has-text-light is-rounded"
-              >
-                Delete
-              </button>
-            )}
-            {product && user?._id === product.user && (
-              <Link to={`/editproduct/${productId}`}>
-                <button className="has-text-light button has-background-warning-dark has-text-centered is-rounded">
-                  Edit
-                </button>
-              </Link>
-            )}
-            {product && !user && (
-              <button
-                onClick={buyButton}
-                className="has-text-light button has-background-warning-dark has-text-centered is-rounded"
-              >
-                Buy Now!
-              </button>
-            )}
             {purchasedProduct && product && <Checkout {...product} />}
-            {product && <Reviews {...product} />}
+          </div>
+          <div className="mt-5">
+            <hr />
+
+            {product && !user && <Reviews {...product} />}
           </div>
         </div>
       </div>
