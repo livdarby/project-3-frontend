@@ -1,7 +1,7 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import { IProduct } from "../interfaces/productInterface";
-import {baseUrl} from "../src/config"
+import { baseUrl } from "../src/config";
 
 type Products = null | Array<IProduct>;
 
@@ -56,9 +56,9 @@ function ProductsList() {
   return (
     <>
       <section className="hero">
-        <figure className="image image is-3by1">
-          <img src="../img/list-page-banner" />
-        </figure>
+        <div className="hero-body bg-img">
+          <p className="title">Product List</p>
+        </div>
       </section>
 
       <section>
@@ -83,8 +83,7 @@ function ProductsList() {
                 <select
                   value={value}
                   onChange={handleDropdownChange}
-                  className="has-background-warning has-text-dark"
-                >
+                  className="has-background-warning has-text-dark">
                   {dropdownCategoryOptions.map((option: any) => {
                     return (
                       <option key={option.value} value={option.value}>
