@@ -5,7 +5,6 @@ import {baseUrl} from "../src/config"
 
 export default function CreateProduct() {
   const navigate = useNavigate();
-  // ! Our state should look like a movie now.
   const [formData, setFormData] = useState({
     title: "",
     price: "",
@@ -25,22 +24,13 @@ export default function CreateProduct() {
 
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
-    // ! We now need to provide a TOKEN in the request. We get this from localStorage
     const token = localStorage.getItem("token");
-    // ? If you do need to send the year back as a number, this is how you would do it.
-    // const newFormData = structuredClone(formData)
-    // newFormData.year = Number(newFormData.year)
-
-    // ! Here we attach the token to the request to the API.
     const resp = await axios.post(`${baseUrl}/products`, formData, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(resp.data);
-    // ! We're now going to homepage
     navigate("/sellerhome");
   }
 
-  // console.log(formData);
 
   const isFormComplete =
     formData.title &&
@@ -64,9 +54,9 @@ export default function CreateProduct() {
                 className="input is-rounded"
                 type="text"
                 placeholder="Product Name"
-                name={"title"} // ! Updating name field to the right name
+                name={"title"} 
                 onChange={handleChange}
-                value={formData.title} // ! Updating the value to the right bit of formData
+                value={formData.title}
               />
             </div>
           </div>
@@ -77,9 +67,9 @@ export default function CreateProduct() {
                 className="input is-rounded"
                 placeholder="Product Price"
                 type="text"
-                name={"price"} // ! Updating name field to the right name
+                name={"price"} 
                 onChange={handleChange}
-                value={formData.price} // ! Updating the value to the right bit of formData
+                value={formData.price} 
               />
             </div>
           </div>
@@ -89,10 +79,10 @@ export default function CreateProduct() {
               <input
                 className="input is-rounded"
                 placeholder="Product image link"
-                type="text" // ! No longer a password field
-                name={"image"} // ! Updating name field to the right name
+                type="text" 
+                name={"image"} 
                 onChange={handleChange}
-                value={formData.image} // !  Updating the value to the right bit of formData
+                value={formData.image} 
               />
             </div>
           </div>
@@ -102,10 +92,10 @@ export default function CreateProduct() {
               <input
                 className="input is-rounded"
                 placeholder="Product Description"
-                type="text" // ! No longer a password field
-                name={"description"} // ! Updating name field to the right name
+                type="text" 
+                name={"description"} 
                 onChange={handleChange}
-                value={formData.description} // !  Updating the value to the right bit of formData
+                value={formData.description} 
               />
             </div>
           </div>
@@ -114,10 +104,10 @@ export default function CreateProduct() {
             <div className="control">
               <select
                 className="input is-rounded "
-                // type="text"
-                name={"category"} // ! Updating name field to the right name
+                
+                name={"category"} 
                 onChange={handleChange}
-                value={formData.category} // ! Updating the value to the right bit of formData
+                value={formData.category} 
               >
                 <option value="">Select a category ⬇️</option>
                 <option value="Pastries">Pastries</option>

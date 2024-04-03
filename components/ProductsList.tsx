@@ -6,7 +6,6 @@ import { baseUrl } from "../src/config";
 type Products = null | Array<IProduct>;
 
 function ProductsList() {
-  // const [category, setCategory] = React.useState<any>([]);
   const [products, setProducts] = React.useState<Products>([]);
   const [search, setSearch] = React.useState("");
   const [value, setValue] = React.useState("");
@@ -63,8 +62,6 @@ function ProductsList() {
 
       <section>
         <div className="columns is-1 is-mobile is-centered pt-6">
-          {/* <div className="column is-one-fifth"></div> */}
-          {/* search bar */}
           <div className="column is-two-thirds">
             {" "}
             <input
@@ -104,7 +101,6 @@ function ProductsList() {
               return (
                 <ProductCard
                   key={product._id}
-                  // ! Pass all properties, don't have to declar them individually.
                   {...product}
                 />
               );
