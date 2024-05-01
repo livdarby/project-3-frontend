@@ -60,9 +60,9 @@ function EditProduct() {
               <input
                 className="input is-rounded"
                 type="text"
-                name={"title"} // ! Updating name field to the right name
+                name={"title"} 
                 onChange={handleChange}
-                value={formData.title} // ! Updating the value to the right bit of formData
+                value={formData.title} 
               />
             </div>
           </div>
@@ -72,9 +72,9 @@ function EditProduct() {
               <input
                 className="input is-rounded"
                 type="text"
-                name={"price"} // ! Updating name field to the right name
+                name={"price"} 
                 onChange={handleChange}
-                value={formData.price} // ! Updating the value to the right bit of formData
+                value={formData.price} 
               />
             </div>
           </div>
@@ -83,10 +83,10 @@ function EditProduct() {
             <div className="control">
               <input
                 className="input is-rounded"
-                type="text" // ! No longer a password field
-                name={"image"} // ! Updating name field to the right name
+                type="text" 
+                name={"image"}
                 onChange={handleChange}
-                value={formData.image} // !  Updating the value to the right bit of formData
+                value={formData.image} 
               />
             </div>
           </div>
@@ -95,10 +95,10 @@ function EditProduct() {
             <div className="control">
               <input
                 className="input is-rounded"
-                type="text" // ! No longer a password field
-                name={"description"} // ! Updating name field to the right name
+                type="text" 
+                name={"description"} 
                 onChange={handleChange}
-                value={formData.description} // !  Updating the value to the right bit of formData
+                value={formData.description} 
               />
             </div>
           </div>
@@ -108,9 +108,9 @@ function EditProduct() {
               <input
                 className="input is-rounded"
                 type="text"
-                name={"category"} // ! Updating name field to the right name
+                name={"category"} 
                 onChange={handleChange}
-                value={formData.category} // ! Updating the value to the right bit of formData
+                value={formData.category} 
               />
             </div>
           </div>
