@@ -324,54 +324,33 @@ export async function postAReview(req: Request, res: Response) {
 }
 ```
 
-Day 5: Deployment & Presentations
+**Day 5: Deployment & Presentations**
+<br> We used Netlify for deployment and presented our e-shop and code in the afternoon to the rest of the class. 
 
-Challenges
+## Challenges
+<br> 
+As this was our first group project where we all worked on code independently, we faced challenges with Git version control and merge conflicts. We overcame this by resolving all our merge conflicts as a team to maintain code integrity and usability.
 
-As this was our first group project where we all worked on code independently, we faced challenges with Git version control and merge conflicts. We resolved all our merge conflicts as a team to maintain code integrity and usability.
-We aimed to define our models at the beginning of the project, however we ended up adding a category filter to our product list page, which meant we had to retrospectively add the category property to our product model in the back-end. This had a knock-on effect to our seeding and controllers, so required some refactoring.
+<br> We aimed to define our models at the beginning of the project, however we ended up adding a category filter to our product list page, which meant we had to retrospectively add the category property to our product model in the back-end. This had a knock-on effect to our seeding and controllers, so required some refactoring.
 
-Wins
+## Wins
 
-We incorporated a number of additional features
+A win for me was adding the review functionality, using the spread operator to add review posts to the existing array in the database, as this is not something we had covered in class.
 
-Key Learnings/Takeaways
+Creating a route in the backend to increment the units sold for the product and user model was also a big win. 
 
-Instructions
+## Key Learnings/Takeaways
+- Brining the front and backend together for the first time in a full stack web application. 
+- Consolidating ReactJS knowledge for the front-end and Mongoose and Express for the back-end.
+- Refining classwork learnings and building on my knowledge base by implementing new features, such as posting reviews and putting unitsSold in the product and user models.
+- Implementing daily standups to make our solo work efficient and constructive, whilst also communicating effectively as a team and coming together to support each other when needed.
+- Becoming comfortable with version control, simulating a real-world working environment. 
 
-This section is one of the other most important parts of your ReadMe from an engineers’ perspective and helps to differentiate each of you from your classmates and team members.
 
-Engineers love to understand what you learn from each project and how it has shaped you as an engineer.
+## Bugs
 
-See this as your opportunity to show the engineers how your skills grew during each project sprint.
+When the handleClick() function is called in the Reviews component, the new review is successfully posted to the backend. However, it does not automatically render on the product page. To get around this we used ```window.location.reload()``` to envoke a page refresh, where the getReviews() function is called in the useEffect. This is a clunky workaround and I would like to find a smoother solution.
 
-Things you could discuss here:
 
-What Technologies/Tools do you now feel more confident with? Tell them specifically what you learnt about these.
-What engineering processes did you become more comfortable with? Standups? Pair programming? Project management? Tell them what you learnt from these processes?
-
-Insert your Key Learnings/Takeaways here:
-
-Bugs
-
-Instructions
-
-If you have any bugs in your project, it’s important that you flag them in your ReadMe. This helps the engineers reviewing your projects to understand that you are aware that there are issues - if you don’t flag these, then they won’t have that visibility that you know these problems are in your code and it can result in them not having a full understanding of your technical knowledge.
-
-In either sentences or bullets, explain what the bugs are.
-
-If you have no bugs, you can leave this section blank.
-
-Insert your Bugs here:
-
-Future Improvements
-
-Instructions
-
-It’s common to get to the end of your project and have ideas on what you would do if you have more time, as well as how you might improve it.
-
-If you do, you should detail this here. It’s great to give that context on potential future improvements, to share your creative or technical ideas with the engineers reading your ReadMes.
-
-In either sentences or bullets, explain what your future improvements would be.
-
-Insert your Future Improvements here:
+## Future Improvements
+On the homepage, we have the three category buttons. We wanted these to redirect to the Product List page with the products automatically filtered by the category selected. We didn't manage to get this working within the project timeframe. 
