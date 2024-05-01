@@ -106,7 +106,7 @@ As we had the idea of displaying the units sold in the seller homepage view, we 
 
 We then began work on the backend together. This included creating the index.ts, seeding and models, the router and controllers.
 
-We started with some basic routes, including getting all products, deleting/posting/putting products and setting up a secure route middleware for token authorization. We used the ```res.locals``` property to pass through the current user in the addAProduct route, to allow us to attach the user to the product object in the request/response cycle. We also added error handling and tested all routes in Insomnia.
+We started with some basic routes, including getting all products, deleting/posting/putting products and setting up a secure route middleware for token authorization. We used the `res.locals` property to pass through the current user in the addAProduct route, to allow us to attach the user to the product object in the request/response cycle. We also added error handling and tested all routes in Insomnia.
 
 You can find a couple of code examples below…
 
@@ -130,7 +130,7 @@ export async function updateAProduct(req: Request, res: Response) {
         const productToUpdate: any = await Products.findById(req.params.\_id);
         if (!productToUpdate) {
         res.send({ message: "No product found" });
-        }  
+        }
     if (res.locals.currentUser.\_id.equals(productToUpdate?.user)) {
         const update = req.body;
         const updatedProduct = await Products.findByIdAndUpdate(
@@ -160,7 +160,7 @@ export default function secureRoute(
     res: Response,
     next: NextFunction
     ) {
-    
+
     const rawToken = req.headers.authorization;
 
     if (!rawToken) {
@@ -227,7 +227,7 @@ React.useEffect(() => {
 }, []);
 ```
 
-**Day 3: Solo Programming - Buy Product & Edit Product Pages** 
+**Day 3: Solo Programming - Buy Product & Edit Product Pages**
 <br>We began the day with a productive stand-up and delegated tasks for individual programming sessions, using our Trello board.
 
 I focused on developing the Checkout component, allowing visitors to progress from the product page to the purchase page, where they can input shipping and credit card details. I used useState to dynamically update delivery costs based on the chosen country from the drop-down list. I also enabled the ‘Complete Purchase’ button only when the Terms & Conditions checkbox is ticked. Once this is clicked, the unitsSold property is incremented in the backend for that product, and the UnitsSold for the seller is also incremented.
@@ -246,7 +246,7 @@ async function completePurchase() {
 
 The completePurchase() function sets the modal display to true, which then gives renders a button to continue shopping and Link that redirects to the Product List Page.
 
-For the edit product page, I used the useEffect hook to make a HTTP request to the server endpoint ```/products/${productId}```, retrieving the product data, and setting it in the formData state using setFormData.
+For the edit product page, I used the useEffect hook to make a HTTP request to the server endpoint `/products/${productId}`, retrieving the product data, and setting it in the formData state using setFormData.
 
 The handleChange() Function is called whenever the user makes a change to any of the form fields. It updates the corresponding property in the formData state based on the input field's name attribute, using a structuredClone since the state update is immutable.
 
@@ -287,13 +287,13 @@ function handleChange(e: any) {
 **Day 4: Posting & Displaying Reviews, Styling Updates**
 <br>Today, we were able to work on some stretch goals! I was excited to have a go at displaying reviews on the individual product pages and adding functionality to let visitors leave a review.
 
-To do this, I added a reviews key to the product model in the backend and a new route for posting reviews. This had to be separate to the Edit Product endpoint ```/products/${productId}```, since I didn’t want to replace the previous reviews each time a new one was posted.
+To do this, I added a reviews key to the product model in the backend and a new route for posting reviews. This had to be separate to the Edit Product endpoint `/products/${productId}`, since I didn’t want to replace the previous reviews each time a new one was posted.
 
-When a request is received at the ```/reviews/${\_id}``` endpoint, the backend code extracts the productId from the request parameters ```req.params.\_id```. It then retrieves the product information from the database using the Products.findById(productId) method.
+When a request is received at the `/reviews/${\_id}` endpoint, the backend code extracts the productId from the request parameters `req.params.\_id`. It then retrieves the product information from the database using the Products.findById(productId) method.
 
 The backend code extracts the existing reviews for the product and combines them with the new reviews submitted in the request body. It also adds the current date and time to each new review before updating the list of reviews for the product.
 
-The front-end code maps through the reviews array and renders them on the product page. The frontend code sends a PUT request to the ```/reviews/:\_id``` endpoint when a visitor submits a review, which updates the product's reviews accordingly.
+The front-end code maps through the reviews array and renders them on the product page. The frontend code sends a PUT request to the `/reviews/:\_id` endpoint when a visitor submits a review, which updates the product's reviews accordingly.
 
 ```
 export async function postAReview(req: Request, res: Response) {
@@ -325,9 +325,10 @@ export async function postAReview(req: Request, res: Response) {
 ```
 
 **Day 5: Deployment & Presentations**
-<br> We used Netlify for deployment and presented our e-shop and code in the afternoon to the rest of the class. 
+<br> We used Netlify for deployment and presented our e-shop and code in the afternoon to the rest of the class.
 
 ## Challenges
+
 <br> 
 As this was our first group project where we all worked on code independently, we faced challenges with Git version control and merge conflicts. We overcame this by resolving all our merge conflicts as a team to maintain code integrity and usability.
 
@@ -337,20 +338,20 @@ As this was our first group project where we all worked on code independently, w
 
 A win for me was adding the review functionality, using the spread operator to add review posts to the existing array in the database, as this is not something we had covered in class.
 
-Creating a route in the backend to increment the units sold for the product and user model was also a big win. 
+Creating a route in the backend to increment the units sold for the product and user model was also a big win.
 
 ## Key Learnings/Takeaways
-- Brining the front and backend together for the first time in a full stack web application. 
+
+- Brining the front and backend together for the first time in a full stack web application.
 - Consolidating ReactJS knowledge for the front-end and Mongoose and Express for the back-end.
 - Refining classwork learnings and building on my knowledge base by implementing new features, such as posting reviews and putting unitsSold in the product and user models.
 - Implementing daily standups to make our solo work efficient and constructive, whilst also communicating effectively as a team and coming together to support each other when needed.
-- Becoming comfortable with version control, simulating a real-world working environment. 
-
+- Becoming comfortable with version control, simulating a real-world working environment.
 
 ## Bugs
 
-When the handleClick() function is called in the Reviews component, the new review is successfully posted to the backend. However, it does not automatically render on the product page. To get around this we used ```window.location.reload()``` to envoke a page refresh, where the getReviews() function is called in the useEffect. This is a clunky workaround and I would like to find a smoother solution.
-
+When the handleClick() function is called in the Reviews component, the new review is successfully posted to the backend. However, it does not automatically render on the product page. To get around this we used `window.location.reload()` to envoke a page refresh, where the getReviews() function is called in the useEffect. This is a clunky workaround and I would like to find a smoother solution.
 
 ## Future Improvements
-On the homepage, we have the three category buttons. We wanted these to redirect to the Product List page with the products automatically filtered by the category selected. We didn't manage to get this working within the project timeframe. 
+
+On the homepage, we have the three category buttons. We wanted these to redirect to the Product List page with the products automatically filtered by the category selected. We didn't manage to get this working within the project timeframe.
